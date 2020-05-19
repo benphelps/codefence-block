@@ -1,0 +1,14 @@
+{
+    "name": "codefence-block",
+    "version": "1.0.0",
+    "description": "codefence.io gutenberg block",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "wp-scripts build"
+    },
+    "author": "phelps.io",
+    "license": "ISC",
+    "devDependencies": {
+        "@wordpress/scripts": "9.0.0"
+    }
+}
