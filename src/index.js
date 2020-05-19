@@ -6,11 +6,12 @@ import {
     Icon,
     PanelBody,
     PanelRow,
+    CheckboxControl
 } from "@wordpress/components";
 
 const blockStyle = {
     fontFamily: "Menlo,Consolas,monaco,monospace",
-    color: "#23282d",
+    color: "#23282d"
 };
 
 const CodefenceLogo = () => (
@@ -61,60 +62,69 @@ registerBlockType("codefence/codefence", {
             content: 'console.log("Hello World!");',
             language: "js",
             heading: "Hello World",
-            artifact: "",
-        },
+            artifact: ""
+        }
     },
     attributes: {
         content: {
             type: "string",
             source: "text",
-            selector: "textarea",
+            selector: "textarea"
         },
         language: {
-            type: "string",
+            type: "string"
         },
         version: {
-            type: "string",
+            type: "string"
         },
         heading: {
-            type: "string",
+            type: "string"
         },
         artifact: {
-            type: "string",
+            type: "string"
         },
+        cache: {
+            type: "boolean"
+        }
     },
-    edit: (props) => {
+    edit: props => {
         const { attributes } = props;
-        const { content, language, heading, artifact, version } = attributes;
+        const {
+            content,
+            language,
+            heading,
+            artifact,
+            version,
+            cache
+        } = attributes;
 
-        const onLanguageChange = (language) => {
+        const onLanguageChange = language => {
             props.setAttributes({
-                language,
+                language
             });
         };
 
-        const onVersionChange = (version) => {
+        const onVersionChange = version => {
             props.setAttributes({
-                version,
-            });
-            ``;
-        };
-
-        const onHeadingChange = (heading) => {
-            props.setAttributes({
-                heading,
+                version
             });
         };
 
-        const onArtifactChange = (artifact) => {
+        const onHeadingChange = heading => {
             props.setAttributes({
-                artifact,
+                heading
             });
         };
 
-        const onContentChange = (content) => {
+        const onArtifactChange = artifact => {
             props.setAttributes({
-                content,
+                artifact
+            });
+        };
+
+        const onCacheChange = cache => {
+            props.setAttributes({
+                cache
             });
         };
 
@@ -141,7 +151,7 @@ registerBlockType("codefence/codefence", {
                                         { label: "Java", value: "java" },
                                         {
                                             label: "JavaScript",
-                                            value: "js",
+                                            value: "js"
                                         },
                                         { label: "Kotlin", value: "kotlin" },
                                         { label: "Lua", value: "lua" },
@@ -152,7 +162,7 @@ registerBlockType("codefence/codefence", {
                                         { label: "Rust", value: "rs" },
                                         { label: "Scala", value: "scala" },
                                         { label: "Swift", value: "swift" },
-                                        { label: "TypeScript", value: "ts" },
+                                        { label: "TypeScript", value: "ts" }
                                     ]}
                                     onChange={onLanguageChange}
                                 />
@@ -166,16 +176,16 @@ registerBlockType("codefence/codefence", {
                                         options={[
                                             {
                                                 label: "5.3.5",
-                                                value: "5.3.5",
+                                                value: "5.3.5"
                                             },
                                             {
                                                 label: "5.2.4",
-                                                value: "5.2.4",
+                                                value: "5.2.4"
                                             },
                                             {
                                                 label: "5.1.5",
-                                                value: "5.1.5",
-                                            },
+                                                value: "5.1.5"
+                                            }
                                         ]}
                                         onChange={onVersionChange}
                                     />
@@ -190,12 +200,12 @@ registerBlockType("codefence/codefence", {
                                         options={[
                                             {
                                                 label: "3.8.2",
-                                                value: "3.8.2",
+                                                value: "3.8.2"
                                             },
                                             {
                                                 label: "2.7.18",
-                                                value: "2.7.18",
-                                            },
+                                                value: "2.7.18"
+                                            }
                                         ]}
                                         onChange={onVersionChange}
                                     />
@@ -212,14 +222,13 @@ registerBlockType("codefence/codefence", {
                                         options={[
                                             {
                                                 label: "adopt-openjdk-13.0.2+8",
-                                                value: "adopt-openjdk-13.0.2+8",
+                                                value: "adopt-openjdk-13.0.2+8"
                                             },
                                             {
                                                 label:
                                                     "adopt-openjdk-8u252-b09",
-                                                value:
-                                                    "adopt-openjdk-8u252-b09",
-                                            },
+                                                value: "adopt-openjdk-8u252-b09"
+                                            }
                                         ]}
                                         onChange={onVersionChange}
                                     />
@@ -234,20 +243,20 @@ registerBlockType("codefence/codefence", {
                                         options={[
                                             {
                                                 label: "10.0.1",
-                                                value: "10.0.1",
+                                                value: "10.0.1"
                                             },
                                             {
                                                 label: "9.3.0",
-                                                value: "9.3.0",
+                                                value: "9.3.0"
                                             },
                                             {
                                                 label: "8.4.0",
-                                                value: "8.4.0",
+                                                value: "8.4.0"
                                             },
                                             {
                                                 label: "7.5.0",
-                                                value: "7.5.0",
-                                            },
+                                                value: "7.5.0"
+                                            }
                                         ]}
                                         onChange={onVersionChange}
                                     />
@@ -269,6 +278,14 @@ registerBlockType("codefence/codefence", {
                                     onChange={onArtifactChange}
                                 />
                             </PanelRow>
+                            <PanelRow>
+                                <CheckboxControl
+                                    label="Bypass Cache"
+                                    help="If checked, bypass all caching. Only enabled if needed as it makes for a slower user experience."
+                                    checked={cache}
+                                    onChange={onCacheChange}
+                                />
+                            </PanelRow>
                         </PanelBody>
                     </InspectorControls>
                 }
@@ -277,13 +294,14 @@ registerBlockType("codefence/codefence", {
                     heading={heading}
                     artifact={artifact}
                     version={version}
+                    cache={!cache}
                 >
                     <textarea vue-slot="code">{content}</textarea>
                 </code-fence>
             </div>
         );
     },
-    save: (props) => {
+    save: props => {
         return (
             <p>
                 <code-fence
@@ -291,6 +309,7 @@ registerBlockType("codefence/codefence", {
                     heading={props.attributes.heading}
                     artifact={props.attributes.artifact}
                     version={props.attributes.version}
+                    cache={!props.attributes.cache}
                 >
                     <textarea vue-slot="code">
                         {props.attributes.content}
@@ -298,5 +317,5 @@ registerBlockType("codefence/codefence", {
                 </code-fence>
             </p>
         );
-    },
+    }
 });
