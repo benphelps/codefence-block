@@ -25,6 +25,6 @@ npm run build
 
 status "Creating archive..."
 
-zip -r codefence-block.zip codefence.php build/
+zip -r codefence-block.zip codefence.php readme.txt assets/ build/
 
 success "Success, codefence-block.zip generated."
