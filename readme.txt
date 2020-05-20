@@ -1,4 +1,4 @@
-=== codefence ===
+=== codefence.io ===
 Contributors: benphelps
 Tags: code block, editor, script embed, run code, codemirror
 Requires at least: 5.1
