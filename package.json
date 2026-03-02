@@ -9,6 +9,6 @@
     "author": "phelps.io",
     "license": "ISC",
     "devDependencies": {
-        "@wordpress/scripts": "9.0.0"
+        "@wordpress/scripts": "31.0.0"
     }
 }
